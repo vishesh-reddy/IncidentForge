@@ -514,3 +514,37 @@ Future engineering directions planned for the platform include:
 ## License
 
 This project is released under the terms of the MIT License for educational, research, and defensive portfolio demonstration purposes.
+
+
+## Visual Architecture
+
+```mermaid
+flowchart LR
+    T[Wazuh / Sysmon / JSON Telemetry] --> N[Normalization]
+    N --> DE[Detection Engine]
+    DE --> CO[Correlation Engine]
+    CO --> RI[ML Risk Scoring]
+    CO --> TI[Threat Intelligence]
+    RI --> AI[AI Investigator]
+    TI --> AI
+    AI --> CM[Case Management]
+    CM --> RG[Response Governance]
+    RG --> UI[Next.js SOC Console]
+```
+
+## Incident Investigation Flow
+
+```mermaid
+flowchart TD
+    A[Raw Telemetry] --> B[Normalize & Validate]
+    B --> C[Create Deterministic Alerts]
+    C --> D[Correlate Related Alerts]
+    D --> E[Build Incident]
+    E --> F[Risk Prioritization]
+    F --> G[IOC Enrichment]
+    G --> H[Advisory AI Investigation]
+    H --> I[Analyst Case Workspace]
+    I --> J{Analyst Approval}
+    J -->|Approved| K[Safe Response Simulation]
+    J -->|Rejected| L[Record Decision / Continue Investigation]
+```
